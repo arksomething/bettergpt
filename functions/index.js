@@ -75,7 +75,7 @@ exports.streamEndpoint = onRequest({
       res.write(data.delta);
     }
   };
-
+  
   const stream = await openai.chat.completions.create({
     model: model || 'openai/gpt-4',
     messages: messages || [{role: 'user', content: 'tell me a joke'}],
