@@ -52,7 +52,7 @@ const Renderer = () => {
             do not use this character in your response, only for the delimiter.
             Here are the objects:
             {"type": "text", "layout": "LAYOUT_HERE", "text": TEXT_HERE}
-            {"type": "flashcard", "layout": "LAYOUT_HERE", "items": [{id: 1, title: TITLE_HERE, category: CATEGORY_HERE, content: TEXT_HERE, answer: ANSWER_HERE}]}
+            {"type": "flashcard", "layout": "LAYOUT_HERE", "items": [{id: 1, category: CATEGORY_HERE, content: TEXT_HERE, answer: ANSWER_HERE}]}
             {"type": "image", "layout": "LAYOUT_HERE", "url": URL_HERE}
             {"type": "link", "layout": "LAYOUT_HERE", "text": TEXT_HERE, "url": URL_HERE}
             {"type": "button", "layout": "LAYOUT_HERE", "text": CONTENT_HERE, "prompt": PROMPT_HERE}

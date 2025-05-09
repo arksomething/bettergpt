@@ -64,7 +64,21 @@ const StreamToComponents = ({ streamAIResponse, stream }) => {
         return null;
     }
   };
-
+  if (!stream) {
+    return (
+      <div className="stream-container" style={{ display: "flex", flexDirection: "row", height: "100%" }}>
+        <div style={{
+          flex: 1,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          borderRight: "1px solid #444"
+        }}>
+          <div style={{ fontSize: "1.2em", color: "#aaa" }}>Ask me anything...</div>
+        </div>
+      </div>
+    );
+  }
 
   if (isLoading || !isValidJson) {
     return (
@@ -78,25 +92,12 @@ const StreamToComponents = ({ streamAIResponse, stream }) => {
         }}>
           <div style={{ fontSize: "1.2em", color: "#aaa" }}>Generating content...</div>
         </div>
-        <div style={{
-          flex: 2,
-          padding: "2em",
-          overflow: "auto"
-        }}>
-          {/* Show the stream content, even if it's 'Loading...' */}
-          {stream}
-
-          
-          
-        </div>
       </div>
     );
   }
 
-
   return (
     <div className="stream-container">
-      {/* <Calculator /> */}
       {headerItems.length > 0 && (
         <div className="header">
           {headerItems.map((item, index) => renderItem(item, index))}
