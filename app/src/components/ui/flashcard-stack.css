@@ -1,0 +1,52 @@
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.rotateY-180 {
+  transform: rotateY(180deg);
+}
+
+.flashcard-side {
+  transition: opacity 0.15s ease-out;
+}
+
+.flashcard-side.front {
+  z-index: 2;
+}
+
+.flashcard-side.back {
+  z-index: 1;
+}
+
+/* Grid background for cards */
+.flashcard-side::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                  linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+  z-index: -1;
+  border-radius: inherit;
+  opacity: 0.5;
+}
+
+/* Highlight component */
+.highlight {
+  font-weight: 500;
+  background-color: rgba(52, 211, 153, 0.2);
+  color: rgb(52, 211, 153);
+  padding: 0 4px;
+  border-radius: 4px;
+}

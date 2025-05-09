@@ -1,0 +1,22 @@
+/* 3D Card base styles */
+.card-container {
+  --x: 0.5;
+  --y: 0.5;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.card-body {
+  transform-style: preserve-3d;
+  transition: transform 0.25s ease;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.card-item {
+  transition: transform 0.25s ease;
+}
+
+.mouse-entered {
+  transition-duration: 0.1s;
+} 

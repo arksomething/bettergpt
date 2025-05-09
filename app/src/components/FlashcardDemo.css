@@ -1,0 +1,57 @@
+.flashcard-demo-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 0;
+  gap: 40px;
+}
+
+.flashcard-demo-text {
+  flex: 1;
+  max-width: 500px;
+}
+
+.flashcard-demo-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 20px;
+  background: linear-gradient(to right, #ffffff, #a8a8a8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.flashcard-demo-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.flashcard-demo-cards {
+  flex: 1;
+  height: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .flashcard-demo-container {
+    flex-direction: column;
+    padding: 20px;
+  }
+  
+  .flashcard-demo-text {
+    text-align: center;
+    max-width: 600px;
+  }
+  
+  .flashcard-demo-cards {
+    width: 100%;
+    margin-top: 40px;
+  }
+} 

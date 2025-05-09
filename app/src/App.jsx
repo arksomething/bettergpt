@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
+import Header from './components/Header'
 import './App.css'
 
 function App() {
@@ -77,6 +78,7 @@ function App() {
 
   return (
     <div className="app-container">
+      <Header />
       <div className="sidebar">
         <div className="sidebar-header">
           <h2>BetterGPT</h2>
@@ -117,7 +119,7 @@ function App() {
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Type your message..."
+              placeholder=""
               disabled={isLoading}
             />
             <button type="submit" disabled={isLoading}>
