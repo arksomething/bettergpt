@@ -1,0 +1,277 @@
+/* Updated AnimatedCard styles */
+.animated-card-body {
+  background-color: #000;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  width: 30rem;
+  max-width: 90vw;
+  height: auto;
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+}
+
+.card-subtitle {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 8px;
+  max-width: 320px;
+}
+
+.card-animation-container {
+  width: 100%;
+  margin-top: 16px;
+}
+
+.animation-wrapper {
+  height: 240px;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #000;
+  position: relative;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.card-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 24px;
+}
+
+.card-button {
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  padding: 8px 16px;
+}
+
+.try-demo {
+  color: white;
+  text-decoration: none;
+}
+
+.sign-up {
+  background-color: white;
+  color: black;
+  border: none;
+  font-weight: 600;
+}
+
+/* Grid Animation */
+.grid-animation {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+  animation: moveGrid 15s linear infinite;
+  z-index: 1;
+}
+
+@keyframes moveGrid {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 20px 20px;
+  }
+}
+
+/* Component Elements - Replacing abstract floating elements */
+.component-element {
+  position: absolute;
+  border-radius: 8px;
+  background-color: #111;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  z-index: 3;
+  color: white;
+  font-size: 0.75rem;
+}
+
+/* Flashcard */
+.flashcard {
+  width: 120px;
+  height: 80px;
+  top: 30px;
+  left: 30px;
+  overflow: hidden;
+  animation-name: float1;
+  background: rgba(255, 62, 0, 0.2);
+  border-color: rgba(255, 135, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
+}
+
+.flashcard-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  text-align: center;
+}
+
+.flashcard-title {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 8px;
+}
+
+.flashcard-content {
+  font-weight: 500;
+}
+
+/* Calculator */
+.calculator {
+  width: 80px;
+  height: 100px;
+  bottom: 30px;
+  right: 40px;
+  animation-name: float2;
+  background: rgba(0, 198, 255, 0.2);
+  border-color: rgba(0, 114, 255, 0.4);
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+}
+
+.calc-screen {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  height: 24px;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 6px;
+  font-family: monospace;
+}
+
+.calc-buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+  flex-grow: 1;
+}
+
+.calc-btn {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+}
+
+/* Notebook */
+.notebook {
+  width: 90px;
+  height: 110px;
+  top: 40%;
+  left: 40px;
+  animation-name: float3;
+  background: rgba(123, 67, 151, 0.2);
+  border-color: rgba(220, 36, 48, 0.4);
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.notebook-lines {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 100% 12px;
+}
+
+.notebook-text {
+  margin-top: 12px;
+  font-weight: 500;
+  position: relative;
+  z-index: 1;
+}
+
+/* Graph */
+.graph {
+  width: 100px;
+  height: 80px;
+  top: 40px;
+  right: 30px;
+  animation-name: float4;
+  background: rgba(17, 153, 142, 0.2);
+  border-color: rgba(56, 239, 125, 0.4);
+  padding: 10px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.graph-bar {
+  width: 16%;
+  background: linear-gradient(to top, rgba(56, 239, 125, 0.8), rgba(17, 153, 142, 0.3));
+  border-radius: 2px 2px 0 0;
+}
+
+.bar1 { height: 40%; }
+.bar2 { height: 65%; }
+.bar3 { height: 35%; }
+.bar4 { height: 50%; }
+
+/* Floating animations */
+@keyframes float1 {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+@keyframes float2 {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(15px); }
+}
+
+@keyframes float3 {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(15px); }
+}
+
+@keyframes float4 {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-15px); }
+}
+
+/* Central glow */
+.central-glow {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 70%);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: pulse 4s ease-in-out infinite;
+  z-index: 2;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+  50% { transform: translate(-50%, -50%) scale(1.5); opacity: 0.3; }
+} 

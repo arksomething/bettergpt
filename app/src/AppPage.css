@@ -1,0 +1,9 @@
+/* Move specific styles from App.css here */
+.app-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+/* Copy the rest of the app-specific styles from App.css */ 

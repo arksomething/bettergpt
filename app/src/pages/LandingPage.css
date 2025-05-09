@@ -1,0 +1,336 @@
+.landing-page {
+  background-color: #000000;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+/* Hero Background Effects */
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.hero-gradient {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at 50% 30%,
+    
+    rgba(0, 0, 0, 0) 70%
+  );
+  z-index: 1;
+}
+
+.hero-grid {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                  linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  z-index: 0;
+  opacity: 0.5;
+  animation: pulse-grid 8s ease-in-out infinite;
+}
+
+.main-content-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 1400px;
+  padding: 0 24px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 2;
+}
+
+/* Hero Section */
+.hero-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 90vh;
+  padding-top: 80px;
+  width: 100%;
+  max-width: 1000px;
+  position: relative;
+}
+
+.title {
+  font-size: 5rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 24px;
+  line-height: 1.1;
+  background: linear-gradient(to right, #ffffff, #a8a8a8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -1px;
+  position: relative;
+  overflow: hidden;
+}
+
+.title::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    rgba(255,255,255,0) 0%, 
+    rgba(255,255,255,0.1) 50%, 
+    rgba(255,255,255,0) 100%);
+  animation: title-shine 6s ease-in-out infinite;
+}
+
+@keyframes title-shine {
+  0% { left: -100%; }
+  20% { left: 100%; }
+  100% { left: 100%; }
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 40px;
+  line-height: 1.5;
+  max-width: 800px;
+}
+
+.button-group {
+  display: flex;
+  gap: 16px;
+  margin: 20px 0 40px;
+}
+
+.main-button {
+  background-color: #ffffff;
+  color: #000000;
+  border: none;
+  border-radius: 12px;
+  padding: 16px 32px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.15);
+  position: relative;
+  z-index: 1;
+  border: 1px solid transparent;
+}
+
+.main-button:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(255, 255, 255, 0.2);
+  border: 1px solid transparent;
+  animation: rainbow-border 3s linear infinite;
+}
+
+/* Animated Card Showcase */
+.card-showcase {
+  margin: 0 0 100px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Feature Section */
+.feature-section {
+  margin: 40px 0 120px;
+  width: 100%;
+  text-align: center;
+}
+
+.feature-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 40px;
+  background: linear-gradient(to right, #ffffff, #a8a8a8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .title {
+    font-size: 4rem;
+  }
+  
+  .feature-title {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    padding-top: 100px;
+  }
+  
+  .title {
+    font-size: 3rem;
+  }
+  
+  .subtitle {
+    font-size: 1.2rem;
+  }
+  
+  .button-group {
+    flex-direction: column;
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .main-button {
+    width: 100%;
+  }
+  
+  .feature-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 2.5rem;
+  }
+  
+  .main-content-area {
+    padding: 0 16px;
+  }
+}
+
+.top-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+}
+
+.logo {
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 500;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+  100% { transform: translateY(0px); }
+}
+
+.account-button {
+  background-color: transparent;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+.demo-button {
+  background-color: transparent;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.demo-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.feature-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* Rainbow border animation */
+@keyframes rainbow-border {
+  0% { border-color: #ff0000; }
+  14% { border-color: #ff7f00; }
+  28% { border-color: #ffff00; }
+  42% { border-color: #00ff00; }
+  57% { border-color: #0000ff; }
+  71% { border-color: #4b0082; }
+  85% { border-color: #9400d3; }
+  100% { border-color: #ff0000; }
+}
+
+/* Add subtle animation to the hero section */
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 20%;
+  left: -5%;
+  width: 110%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  opacity: 0;
+  animation: scan-line 8s ease-in-out infinite;
+}
+
+@keyframes scan-line {
+  0% { transform: translateY(0px); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(500px); opacity: 0; }
+}
+
+/* Hover effect for feature cards */
+.hover-card {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hover-card:hover {
+  animation: rainbow-border 4s linear infinite;
+}
+
+/* Remove rainbow animation from header */
+.header-content {
+  transition: box-shadow 0.3s ease;
+}
+
+.header-content:hover {
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  /* Rainbow animation removed */
+}
+
+/* Enhance the grid with subtle pulsing */
+@keyframes pulse-grid {
+  0% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+  100% { opacity: 0.3; }
+} 

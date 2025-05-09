@@ -1,4 +1,5 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
+import Header from './components/Header'
 import './App.css'
 
 import MarkdownView from './components/MarkdownView'
@@ -73,14 +74,55 @@ function App() {
   };
 
   return (
-    <div className="app">
-      <div className="chat">
-        <div className="messages">
-          {messages.map((message, index) => (
-            <div key={index}>
-              <MarkdownView text={message.content} />
-            </div>
-          ))}
+    <div className="app-container">
+      <Header />
+      <div className="sidebar">
+        <div className="sidebar-header">
+          <h2>BetterGPT</h2>
+        </div>
+        <button className="new-chat-button">
+          New Chat
+        </button>
+      </div>
+      <div className="main-content">
+        <div className="chat-container">
+          <div className="chat-messages">
+            {messages.map((message, index) => (
+              <div key={index} className={`message ${message.role}`}>
+                <div className="message-avatar">
+                  {message.role === 'user' ? '👤' : '🤖'}
+                </div>
+                <div className="message-content">
+                  {message.content}
+                </div>
+              </div>
+            ))}
+            {isLoading && (
+              <div className="message assistant">
+                <div className="message-avatar">🤖</div>
+                <div className="message-content">
+                  <div className="typing-indicator">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                </div>
+              </div>
+            )}
+            <div ref={messagesEndRef} />
+          </div>
+          <form onSubmit={handleSubmit} className="chat-input-form">
+            <input
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder=""
+              disabled={isLoading}
+            />
+            <button type="submit" disabled={isLoading}>
+              Send
+            </button>
+          </form>
         </div>
         <form onSubmit={handleSubmit} className="input-form">
           <input
