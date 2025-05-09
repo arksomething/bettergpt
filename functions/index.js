@@ -10,6 +10,7 @@
 const OpenAI = require('openai');
 const {onRequest} = require("firebase-functions/v2/https");
 const { defineSecret } = require("firebase-functions/params");
+const { getLargestImage } = require("./webscraper");
 
 const OPENROUTER_API_KEY = defineSecret("OPENROUTER_API_KEY");
 
@@ -99,5 +100,74 @@ exports.streamEndpoint = onRequest({
       }
     }
   })();
+});
+
+// New web scraper endpoint
+exports.getLargestImage = onRequest({
+  cors: true
+}, async (req, res) => {
+  // Handle CORS preflight requests
+  if (req.method === "OPTIONS") {
+    res.set("Access-Control-Allow-Origin", "*");
+    res.set("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    res.set("Access-Control-Allow-Headers", "Content-Type");
+    res.set("Access-Control-Max-Age", "3600");
+    return res.status(204).send("");
+  }
+  
+  // Set CORS headers for all responses
+  res.set("Access-Control-Allow-Origin", "*");
+  
+  try {
+    const { url } = req.query;
+    
+    if (!url) {
+      return res.status(400).json({
+        error: "Missing required parameter: url"
+      });
+    }
+    
+    const imageUrl = await getLargestImage(url);
+    
+    if (!imageUrl) {
+      return res.status(404).json({
+        error: "No images found on the page"
+      });
+    }
+    
+    res.status(200).json({
+      imageUrl
+    });
+  } catch (error) {
+    console.error("Error in getLargestImage function:", error);
+    res.status(500).json({
+      error: "Failed to retrieve the largest image",
+      message: error.message
+    });
+  }
+});
+
+exports.getImageFromUrl = onRequest({ 
+  cors: true
+}, async(request, response) => {
+  try {
+    const { url } = request.query;
+    
+    if (!url) {
+      return response.status(400).json({ error: 'URL parameter is required' });
+    }
+    
+    console.log(`Processing URL: ${url}`);
+    const imageUrl = await getLargestImage(url);
+    
+    if (!imageUrl) {
+      return response.status(404).json({ error: 'No images found on the page' });
+    }
+    
+    response.json({ imageUrl });
+  } catch (error) {
+    console.error('Error processing request:', error);
+    response.status(500).json({ error: 'An error occurred while processing your request.' });
+  }
 });
 

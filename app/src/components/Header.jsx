@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './Header.css';
+import AnimatedLogo from './AnimatedLogo';
 
 const Header = () => {
   const location = useLocation();
@@ -9,11 +10,12 @@ const Header = () => {
     <header className="header-container">
       <div className="header-content">
         <div className="header-left">
-          <div className="logo-placeholder">
-            {/* Logo placeholder - you'll add this later */}
-            <div className="logo-icon"></div>
-          </div>
-          <div className="brand-name">ReflexAI</div>
+          <Link to="/" className="logo-link">
+            <div className="logo-container">
+              <AnimatedLogo />
+            </div>
+            <div className="brand-name">ReflexAI</div>
+          </Link>
         </div>
         
         <nav className="header-nav">

@@ -1,0 +1,19 @@
+.button {
+  background-color: #ffffff; /* Green */
+  border: none;
+  color: rgb(0, 0, 0);
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 8px 16px;
+  cursor: pointer;
+  width: fit-content;
+}
+
+
+.button-container {
+  margin: 8px auto;
+}
+

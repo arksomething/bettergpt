@@ -10,14 +10,19 @@
   flex-direction: row;
   flex: 1;
   min-height: 0;
+  overflow-x: auto;
+  overflow-y: auto;
+  height: 100%;
 }
 
 .sidebar {
-  width: 180px;
+  min-width: 180px;
   padding: 1rem;
   background-color: rgba(52, 53, 65, 0.8);
   border-right: 1px solid rgba(255, 255, 255, 0.1);
   flex-shrink: 0;
+  overflow: visible;
+  height: 100%;
 }
 
 .main-content {
@@ -26,10 +31,13 @@
   min-width: 0;
   overflow-y: auto;
   min-height: 0;
+  overflow: visible;
+  height: 100%;
 }
 
 .footer {
-  padding: 1rem;
+  margin: 0px;
+  padding-top: 1em;
   background-color: rgba(52, 53, 65, 0.8);
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   flex-shrink: 0;

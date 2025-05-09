@@ -6,6 +6,7 @@ import Card from './Card';
 import Image from './Image';
 import Calculator from './Calculator';
 import './StreamToComponents.css';
+import { CardStack } from './ui/card-stack';
 
 function safeParseJsonStream(input, delimiter = '␟') {
   const chunks = input.split(delimiter);
@@ -42,7 +43,7 @@ const StreamToComponents = ({ streamAIResponse, stream }) => {
       case 'button':
         return <Button key={index} text={item.text} prompt={item.prompt} streamAIResponse={streamAIResponse} />;
       case 'flashcard':
-        return <Flashcard key={index} front={item.front} back={item.back} />;
+        return <CardStack key={index} items={item.items} />;
       case 'card':
         return <Card key={index} header={item.header} content={item.content} image={item.image} />;
       case 'image':
@@ -55,6 +56,7 @@ const StreamToComponents = ({ streamAIResponse, stream }) => {
   return (
     <div className="stream-container">
       {/* <Calculator /> */}
+      {/* {stream} */}
       {headerItems.length > 0 && (
         <div className="header">
           {headerItems.map((item, index) => renderItem(item, index))}
