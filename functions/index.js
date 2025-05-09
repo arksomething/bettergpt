@@ -9,36 +9,29 @@
 
 const OpenAI = require('openai');
 const {onRequest} = require("firebase-functions/v2/https");
+const { defineSecret } = require("firebase-functions/params");
 
-const openai = new OpenAI({
-  baseURL: 'https://openrouter.ai/api/v1',
-  apiKey: 'none',
-});
+const OPENROUTER_API_KEY = defineSecret("OPENROUTER_API_KEY");
 
 // Create and deploy your first functions
 // https://firebase.google.com/docs/functions/get-started
 
-exports.helloWorld = onRequest(async(request, response) => {
-  // Enable CORS
-  response.set('Access-Control-Allow-Origin', '*');
-  response.set('Access-Control-Allow-Methods', 'GET, POST');
-  response.set('Access-Control-Allow-Headers', 'Content-Type');
-
-  // Handle preflight requests
-  if (request.method === 'OPTIONS') {
-    response.status(204).send('');
-    return;
-  }
-
+exports.helloWorld = onRequest({ 
+  cors: true,
+  secrets: [OPENROUTER_API_KEY]
+}, async(request, response) => {
   try {
-    const message = request.method === 'POST' ? request.body.message : 'What is the meaning of life?';
+    const openai = new OpenAI({
+      baseURL: 'https://openrouter.ai/api/v1',
+      apiKey: OPENROUTER_API_KEY.value(),
+    });
     
     const completion = await openai.chat.completions.create({
       model: 'openai/gpt-4',
       messages: [
         {
           role: 'user',
-          content: message,
+          content: "tell me a joke",
         },
       ],
     });
@@ -50,15 +43,18 @@ exports.helloWorld = onRequest(async(request, response) => {
   }
 });
 
-exports.streamEndpoint = onRequest({ cors: true, secrets: [OPENAI_API_KEY] }, async (req, res) => {
+exports.streamEndpoint = onRequest({ 
+  cors: true, 
+  secrets: [OPENROUTER_API_KEY] 
+}, async (req, res) => {
   if (req.method === "OPTIONS") {
-    res.set("Access-Control-Allow-Origin", "*"); // Allow all origins (or specify your frontend)
+    res.set("Access-Control-Allow-Origin", "*");
     res.set("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
     res.set("Access-Control-Allow-Headers", "Content-Type");
-    res.set("Access-Control-Max-Age", "3600"); // Cache preflight response for 1 hour
-    return res.status(204).send(""); // End preflight response
+    res.set("Access-Control-Max-Age", "3600");
+    return res.status(204).send("");
   }
-  const openai = new OpenAI({ apiKey: OPENAI_API_KEY.value() });
+
   // Set CORS Headers for actual requests
   res.setHeader("Content-Type", "text/event-stream");
   res.setHeader("Cache-Control", "no-cache");
@@ -66,7 +62,12 @@ exports.streamEndpoint = onRequest({ cors: true, secrets: [OPENAI_API_KEY] }, as
   res.set("Access-Control-Allow-Origin", "*");
   res.set("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
 
-  let isEnded = false; // Flag to track if the response has ended
+  const openai = new OpenAI({
+    baseURL: 'https://openrouter.ai/api/v1',
+    apiKey: OPENROUTER_API_KEY.value(),
+  });
+
+  let isEnded = false;
   const {messages, model} = req.body;
 
   const sendData = (data) => {
@@ -75,35 +76,26 @@ exports.streamEndpoint = onRequest({ cors: true, secrets: [OPENAI_API_KEY] }, as
     }
   };
 
-  const prompt = ``
-
-  const stream = await openai.responses.create({
-    model: model,
-    input: [
-      {role: "system", content: prompt},
-        ...messages,
-      {role: "user", content: userPrompt},
-    ],
+  const stream = await openai.chat.completions.create({
+    model: model || 'openai/gpt-4',
+    messages: messages || [{role: 'user', content: 'tell me a joke'}],
     stream: true,
   });
 
   (async () => {
     try {
-      for await (const event of stream) {
-        if (event.type == "response.output_text.delta"){ 
-          sendData(event);
-        }
-        if (event.type === 'response.output_item.done') {
-          break; // Exit the loop if the event indicates completion
+      for await (const chunk of stream) {
+        if (chunk.choices[0]?.delta?.content) {
+          sendData({ delta: chunk.choices[0].delta.content });
         }
       }
     } catch (error) {
       console.error("Error during streaming:", error);
-      sendData({ error: "Something went wrong" }); // Send error message to client
+      sendData({ error: "Something went wrong" });
     } finally {
       if (!isEnded) {
-        isEnded = true; // Set the flag to true
-        res.end(); // End the response
+        isEnded = true;
+        res.end();
       }
     }
   })();
