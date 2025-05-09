@@ -12,6 +12,8 @@
   "dependencies": {
     "@headlessui/react": "^2.2.2",
     "framer-motion": "^12.10.4",
+    "mathjs": "^14.4.0",
+    "plotly.js-dist": "^3.0.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-markdown": "^10.1.0",
