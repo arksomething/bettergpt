@@ -28,19 +28,42 @@
   gap: 12px;
 }
 
-.logo-placeholder {
-  width: 32px;
-  height: 32px;
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.logo-container {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.logo-icon {
-  width: 24px;
-  height: 24px;
-  background-color: #ffffff;
-  border-radius: 6px;
+.logo-svg-container {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+}
+
+.logo-svg-container svg {
+  width: 32px;
+  height: 32px;
+}
+
+.logo-image {
+  height: 28px;
+  width: auto;
+  object-fit: contain;
+}
+
+.logo-container img {
+  display: block;
+  max-width: 100%;
 }
 
 .brand-name {

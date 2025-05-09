@@ -1,79 +1,115 @@
 .card-stack-container {
   position: relative;
   width: 100%;
-  max-width: 500px;
-  height: 300px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  perspective: 1000px;
+  height: 100%;
 }
 
 .card-stack-card {
   position: absolute;
   width: 100%;
   height: 100%;
-  border-radius: 16px;
-  background: linear-gradient(145deg, #111111, #181818);
+  border-radius: 20px;
+  background: rgba(30, 30, 30, 0.7);
   border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   padding: 24px;
-  color: white;
-  cursor: grab;
-  transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1),
-              opacity 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.card-question-face, .card-answer-face {
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 0.3s ease;
 }
 
-.card-stack-card-top {
-  box-shadow: 0 20px 40px -5px rgba(0, 0, 0, 0.4);
-}
-
-.card-stack-card-dragging {
-  cursor: grabbing;
-  transform: translateY(-10px) scale(1.05) !important;
-  box-shadow: 0 30px 50px -10px rgba(0, 0, 0, 0.5);
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .card-stack-header {
   display: flex;
-  flex-direction: column;
-  margin-bottom: 16px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .card-stack-title {
   font-size: 1.5rem;
   font-weight: 700;
-  background: linear-gradient(to right, #ffffff, #a8a8a8);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 4px;
+  color: #ffffff;
 }
 
 .card-stack-category {
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.5);
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .card-stack-content {
   flex: 1;
-  font-size: 1.1rem;
-  line-height: 1.5;
+  font-size: 1rem;
+  line-height: 1.6;
   color: rgba(255, 255, 255, 0.8);
   overflow-y: auto;
+  margin-bottom: 20px;
+}
+
+.card-stack-answer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.2rem;
 }
 
 .card-stack-footer {
-  margin-top: 16px;
   display: flex;
   justify-content: flex-end;
+  align-items: center;
 }
 
 .card-stack-tip {
   font-size: 0.8rem;
   color: rgba(255, 255, 255, 0.4);
-  font-style: italic;
+}
+
+.card-stack-navigation {
+  position: absolute;
+  bottom: -60px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  z-index: 1000;
+}
+
+.card-stack-nav-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  z-index: 1010;
+}
+
+.card-stack-nav-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
 }
 
 /* Highlight component styling */

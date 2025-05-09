@@ -1,14 +1,7 @@
 import React from "react";
 import { CardStack } from "./ui/card-stack";
-import { Highlight } from "./ui/Highlight";
+import { TextHighlight } from "./ui/TextHighlight";
 import "./FlashcardDemo.css";
-
-// Highlight utility component
-export const Highlight = ({ children }) => {
-  return (
-    <span className="highlight">{children}</span>
-  );
-};
 
 // Sample flashcards data
 const FLASHCARDS = [
@@ -18,7 +11,7 @@ const FLASHCARDS = [
     category: "Machine Learning",
     content: (
       <p>
-        Neural networks are computing systems inspired by the <Highlight>biological neural networks</Highlight> that constitute animal brains. The connections between nodes can <Highlight>transmit signals</Highlight> from one to another, and the signal gets processed at each connection.
+        Neural networks are computing systems inspired by the <TextHighlight>biological neural networks</TextHighlight> that constitute animal brains. The connections between nodes can <TextHighlight>transmit signals</TextHighlight> from one to another, and the signal gets processed at each connection.
       </p>
     ),
   },
@@ -28,7 +21,7 @@ const FLASHCARDS = [
     category: "Deep Learning",
     content: (
       <p>
-        Transformers use <Highlight>self-attention mechanisms</Highlight> to weigh the importance of different parts of the input data. This architecture has become dominant in <Highlight>natural language processing</Highlight> and increasingly in computer vision.
+        Transformers use <TextHighlight>self-attention mechanisms</TextHighlight> to weigh the importance of different parts of the input data. This architecture has become dominant in <TextHighlight>natural language processing</TextHighlight> and increasingly in computer vision.
       </p>
     ),
   },
@@ -38,7 +31,7 @@ const FLASHCARDS = [
     category: "AI Foundation",
     content: (
       <p>
-        LLMs are trained on vast amounts of text data and can generate <Highlight>human-like text</Highlight>. They're capable of tasks like translation, summarization, and even code generation based on their <Highlight>statistical understanding</Highlight> of language patterns.
+        LLMs are trained on vast amounts of text data and can generate <TextHighlight>human-like text</TextHighlight>. They're capable of tasks like translation, summarization, and even code generation based on their <TextHighlight>statistical understanding</TextHighlight> of language patterns.
       </p>
     ),
   },
@@ -48,7 +41,7 @@ const FLASHCARDS = [
     category: "AI Interface",
     content: (
       <p>
-        The art of crafting inputs to get desired outputs from AI models. Effective prompts can <Highlight>dramatically improve</Highlight> the quality and relevance of AI-generated content by providing proper <Highlight>context and constraints</Highlight>.
+        The art of crafting inputs to get desired outputs from AI models. Effective prompts can <TextHighlight>dramatically improve</TextHighlight> the quality and relevance of AI-generated content by providing proper <TextHighlight>context and constraints</TextHighlight>.
       </p>
     ),
   },

@@ -1,222 +1,495 @@
 .landing-page {
-  background-color: #000000;
+  position: relative;
   min-height: 100vh;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  overflow-x: hidden;
+  background-color: #080808;
+  overflow: hidden;
+  color: #fff;
 }
 
-/* Hero Background Effects */
-.hero-background {
-  position: absolute;
+/* Unified background system that spans the entire page */
+.page-background {
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
-  overflow: hidden;
-  z-index: 0;
-}
-
-.hero-gradient {
-  position: absolute;
-  width: 100%;
   height: 100%;
-  background: radial-gradient(
-    circle at 50% 30%,
-    
-    rgba(0, 0, 0, 0) 70%
-  );
-  z-index: 1;
+  z-index: 0;
+  pointer-events: none;
 }
 
+/* Animated gradient with reduced opacity for subtlety */
+.animated-gradient {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, 
+    rgba(76, 0, 255, 0.08) 0%, 
+    rgba(125, 0, 180, 0.06) 25%, 
+    rgba(0, 212, 255, 0.04) 50%, 
+    rgba(0, 0, 0, 0) 75%);
+  z-index: 0;
+  animation: rotate 60s linear infinite;
+  opacity: 0.8;
+}
+
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Subtle grid that spans the entire page */
 .hero-grid {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                  linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 40px 40px;
-  z-index: 0;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 30px 30px;
   opacity: 0.5;
-  animation: pulse-grid 8s ease-in-out infinite;
 }
 
+/* Particles effect */
+.hero-particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 60px 60px;
+  opacity: 0.2;
+}
+
+/* Floating orbs with more subtle positioning */
+.floating-orbs {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+}
+
+.orb1 {
+  top: 10%;
+  left: 5%;
+  width: 300px;
+  height: 300px;
+  background: rgba(76, 0, 255, 0.1);
+  animation: float1 20s ease-in-out infinite;
+}
+
+.orb2 {
+  bottom: 20%;
+  right: 10%;
+  width: 250px;
+  height: 250px;
+  background: rgba(0, 212, 255, 0.1);
+  animation: float2 25s ease-in-out infinite;
+}
+
+.orb3 {
+  top: 40%;
+  right: 30%;
+  width: 200px;
+  height: 200px;
+  background: rgba(255, 0, 128, 0.1);
+  animation: float3 18s ease-in-out infinite;
+}
+
+@keyframes float1 {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(30px, 30px); }
+}
+
+@keyframes float2 {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-20px, 20px); }
+}
+
+@keyframes float3 {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-30px, -25px); }
+}
+
+/* Main content layout with proper spacing */
 .main-content-area {
+  position: relative;
+  z-index: 10;
+  padding: 0 20px;
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 100%;
-  max-width: 1400px;
-  padding: 0 24px;
-  margin: 0 auto;
-  box-sizing: border-box;
-  position: relative;
-  z-index: 2;
 }
 
-/* Hero Section */
+/* Hero section with improved spacing */
 .hero-section {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  padding: 100px 0 0;
   text-align: center;
-  min-height: 90vh;
-  padding-top: 80px;
-  width: 100%;
-  max-width: 1000px;
-  position: relative;
 }
 
-.title {
-  font-size: 5rem;
-  font-weight: 800;
-  color: #ffffff;
-  margin: 0 0 24px;
+.hero-content {
+  max-width: 900px;
+}
+
+/* Hero title - make all white */
+.hero-title {
+  font-size: 4.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
   line-height: 1.1;
-  background: linear-gradient(to right, #ffffff, #a8a8a8);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  letter-spacing: -1px;
+  color: #ffffff;
+  text-align: center;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  margin-top: 60px !important; /* Make room for the logo */
+  gap: 15px !important; /* Consistent vertical gap between lines */
+}
+
+/* Style the first line to position logo to left of text */
+.title-first-line {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0 !important; /* Remove gap property entirely */
+}
+
+/* Logo positioning */
+.hero-logo-wrapper {
+  margin: 0 -2px 0 0 !important; /* Negative right margin to pull text closer */
+  padding: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
+/* 
+ * LOGO SIZE CONTROL - Enhanced with max specificity and multiple properties
+ * This should override all other styling conflicts
+ */
+.hero-logo-wrapper .logo-svg-container svg,
+.title-first-line .hero-logo-wrapper .logo-svg-container svg,
+.hero-title .title-first-line .hero-logo-wrapper .logo-svg-container svg {
+  width: 100px !important; /* ADJUST THIS VALUE to change logo width */
+  height: 100px !important; /* ADJUST THIS VALUE to change logo height */
+  min-width: 100px !important; /* Force minimum width */
+  min-height: 100px !important; /* Force minimum height */
+  max-width: none !important; /* Remove any max width constraints */
+  max-height: none !important; /* Remove any max height constraints */
+  transform: scale(1) !important; /* Reset any transforms */
+}
+
+/* Ensure the container doesn't constrain the SVG */
+.hero-logo-wrapper .logo-svg-container,
+.title-first-line .hero-logo-wrapper .logo-svg-container {
+  width: auto !important;
+  height: auto !important;
+  min-width: 100px !important;
+  min-height: 100px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: visible !important;
+}
+
+/* Text styling for ReflexAI */
+.reflex-text {
+  font-size: 4.5rem !important;
+  font-weight: 700 !important;
+  margin: 0 0 0 -2px !important; /* Negative left margin to move closer to logo */
+  padding: 0 !important;
+  letter-spacing: -0.01em !important;
+  position: relative !important;
+  left: -2px !important; /* Additional shift left */
+}
+
+/* Keep second line styling */
+.subtitle-line {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important; /* Natural spacing between Your and box */
+}
+
+/* Change highlight text to white instead of blue gradient */
+.highlight-text {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  line-height: 1.7;
+  color: #ffffff;
+  max-width: 800px;
+  margin: 0 auto 2.5rem;
+  text-align: center;
+  margin-top: 15px !important;
+}
+
+/* Button styling - grayish black with white text */
+.button-group {
   position: relative;
+  margin-top: 25px;
+}
+
+.button-group::before {
+  content: '';
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  width: 1px;
+  height: 15px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.6));
+  transform: translateX(-50%);
+  animation: pulse-line 2s infinite ease-in-out;
+}
+
+.button-group::after {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  width: 30px;
+  height: 1px;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0));
+  transform: translateX(-50%);
+  animation: expand-line 2s infinite ease-in-out;
+}
+
+@keyframes pulse-line {
+  0% { opacity: 0.3; height: 15px; }
+  50% { opacity: 0.8; height: 20px; }
+  100% { opacity: 0.3; height: 15px; }
+}
+
+@keyframes expand-line {
+  0% { width: 20px; opacity: 0.3; }
+  50% { width: 50px; opacity: 0.8; }
+  100% { width: 20px; opacity: 0.3; }
+}
+
+/* Button styling - grayish black with white text */
+.main-button {
+  background-color: #1a1a1a;
+  color: #ffffff;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  padding: 12px 32px;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 2;
   overflow: hidden;
 }
 
-.title::after {
+/* White outline animation on hover */
+.main-button:hover {
+  transform: translateY(-3px);
+  background-color: #1a1a1a;
+  border-color: #ffffff;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+.main-button::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: -100%;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(90deg, 
-    rgba(255,255,255,0) 0%, 
-    rgba(255,255,255,0.1) 50%, 
-    rgba(255,255,255,0) 100%);
-  animation: title-shine 6s ease-in-out infinite;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border: 2px solid #ffffff;
+  border-radius: 30px;
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.3s ease;
 }
 
-@keyframes title-shine {
-  0% { left: -100%; }
-  20% { left: 100%; }
-  100% { left: 100%; }
+.main-button:hover::before {
+  opacity: 1;
+  animation: pulse 1.5s infinite;
 }
 
-.subtitle {
-  font-size: 1.5rem;
-  color: rgba(255, 255, 255, 0.7);
-  margin-bottom: 40px;
-  line-height: 1.5;
-  max-width: 800px;
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
 }
 
-.button-group {
-  display: flex;
-  gap: 16px;
-  margin: 20px 0 40px;
+/* Additional style for glow effect */
+.glow-effect:hover {
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
 }
 
-.main-button {
-  background-color: #ffffff;
-  color: #000000;
-  border: none;
-  border-radius: 12px;
-  padding: 16px 32px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.15);
+/* Unified section styling */
+section {
   position: relative;
-  z-index: 1;
-  border: 1px solid transparent;
+  padding: 80px 0;
+  opacity: 0.97;
+  transition: opacity 0.3s ease;
 }
 
-.main-button:hover {
-  background-color: rgba(255, 255, 255, 0.9);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 25px rgba(255, 255, 255, 0.2);
-  border: 1px solid transparent;
-  animation: rainbow-border 3s linear infinite;
+section:hover {
+  opacity: 1;
 }
 
-/* Animated Card Showcase */
-.card-showcase {
-  margin: 0 0 100px;
+/* Section label styling - floating badges */
+.section-label {
+  position: relative;
   display: flex;
   justify-content: center;
-  width: 100%;
+  margin-bottom: 30px;
 }
 
-/* Feature Section */
-.feature-section {
-  margin: 40px 0 120px;
-  width: 100%;
+.section-label span {
+  padding: 8px 20px;
+  background: rgba(30, 30, 35, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 30px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+/* Demo section styling */
+.demo-section {
+  padding-top: 0;
+}
+
+.demo-section .section-label span {
+  background: rgba(37, 99, 235, 0.15);
+  border-color: rgba(37, 99, 235, 0.3);
+  color: #3b82f6;
+}
+
+.card-showcase {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+/* Learning section styling */
+.learning-section {
+  position: relative;
+}
+
+.learning-section .section-label span {
+  background: rgba(139, 92, 246, 0.15);
+  border-color: rgba(139, 92, 246, 0.3);
+  color: #8b5cf6;
+}
+
+.flashcard-showcase {
+  position: relative;
+  padding: 20px 0;
+}
+
+/* Features section styling */
+.features-section {
+  position: relative;
+}
+
+.features-section .section-label span {
+  background: rgba(236, 72, 153, 0.15);
+  border-color: rgba(236, 72, 153, 0.3);
+  color: #ec4899;
+}
+
+.section-header {
   text-align: center;
+  margin-bottom: 40px;
 }
 
-.feature-title {
-  font-size: 3rem;
+.section-title {
+  font-size: 2.5rem;
   font-weight: 700;
-  color: #ffffff;
-  margin-bottom: 40px;
   background: linear-gradient(to right, #ffffff, #a8a8a8);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* Responsive adjustments */
-@media (max-width: 1200px) {
-  .title {
-    font-size: 4rem;
-  }
-  
-  .feature-title {
-    font-size: 2.5rem;
-  }
+/* Connector lines between sections */
+.demo-section::before,
+.learning-section::before,
+.features-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 80px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
 }
 
-@media (max-width: 768px) {
-  .hero-section {
-    padding-top: 100px;
-  }
-  
+/* Responsive adjustments */
+@media (max-width: 1024px) {
   .title {
     font-size: 3rem;
   }
   
   .subtitle {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
   
-  .button-group {
-    flex-direction: column;
-    width: 100%;
-    max-width: 300px;
-  }
-  
-  .main-button {
-    width: 100%;
-  }
-  
-  .feature-title {
+  .section-title {
     font-size: 2rem;
+  }
+  
+  section {
+    padding: 60px 0;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 80px 0 0;
+  }
+  
   .title {
     font-size: 2.5rem;
   }
   
-  .main-content-area {
-    padding: 0 16px;
+  .orb1, .orb2, .orb3 {
+    opacity: 0.15;
+  }
+  
+  section {
+    padding: 50px 0;
+  }
+  
+  .demo-section::before,
+  .learning-section::before,
+  .features-section::before {
+    height: 50px;
   }
 }
 
@@ -288,24 +561,9 @@
   100% { border-color: #ff0000; }
 }
 
-/* Add subtle animation to the hero section */
+/* Remove the animated scan line */
 .hero-section::before {
-  content: '';
-  position: absolute;
-  top: 20%;
-  left: -5%;
-  width: 110%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-  opacity: 0;
-  animation: scan-line 8s ease-in-out infinite;
-}
-
-@keyframes scan-line {
-  0% { transform: translateY(0px); opacity: 0; }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { transform: translateY(500px); opacity: 0; }
+  content: none; /* This effectively removes the pseudo-element */
 }
 
 /* Hover effect for feature cards */
@@ -333,4 +591,200 @@
   0% { opacity: 0.3; }
   50% { opacity: 0.6; }
   100% { opacity: 0.3; }
-} 
+}
+
+/* Section dividers and improved spacing */
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
+  margin: 30px 0;
+}
+
+/* Section container with improved spacing and visual cues */
+.content-section {
+  margin: 120px 0;
+  position: relative;
+  border-radius: 24px;
+  padding: 30px;
+  background: rgba(10, 10, 15, 0.3);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Header badges for section identification */
+.section-badge {
+  display: inline-block;
+  padding: 5px 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  background: rgba(79, 86, 255, 0.15);
+  color: #4f56ff;
+  border: 1px solid rgba(79, 86, 255, 0.2);
+}
+
+.features-badge {
+  background: rgba(255, 77, 77, 0.15);
+  color: #ff4d4d;
+  border: 1px solid rgba(255, 77, 77, 0.2);
+}
+
+.demo-badge {
+  background: rgba(0, 229, 255, 0.15);
+  color: #00e5ff;
+  border: 1px solid rgba(0, 229, 255, 0.2);
+}
+
+/* Enhanced card showcase area */
+.card-showcase {
+  padding: 60px 0;
+  margin: 100px 0;
+  position: relative;
+}
+
+/* Separate flashcard section more clearly */
+.flashcard-section {
+  margin: 150px 0;
+  padding: 40px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.flashcard-section::before {
+  content: '';
+  position: absolute;
+  width: 150%;
+  height: 130%;
+  top: -15%;
+  left: -25%;
+  background: radial-gradient(ellipse at center, rgba(84, 0, 255, 0.08) 0%, transparent 70%);
+  transform: rotate(-3deg);
+}
+
+/* More distinct feature section */
+.feature-section {
+  padding: 80px 0 120px;
+  position: relative;
+  margin-top: 100px;
+}
+
+.feature-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
+}
+
+/* Container for the second line to control sizing */
+.subtitle-line {
+  font-size: 0.7em; /* Makes the whole second line smaller */
+  display: inline-block;
+  margin-top: 0.5rem;
+}
+
+/* Your text styling to match highlight box */
+.your-text {
+  font-weight: 600;
+  color: white;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Highlight box styling with pale tinge */
+.highlight-box {
+  display: inline-block;
+  background-color: rgba(240, 240, 245, 0.1);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  margin: 0 !important;
+}
+
+/* Typing animation wrapper */
+.typing-animation-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 15px 0 30px;
+}
+
+/* Container for the typing animation */
+.typing-container {
+  background-color: rgba(20, 20, 30, 0.7);
+  border-radius: 14px;
+  padding: 12px 20px;
+  min-width: 180px;
+  min-height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.typing-container:hover {
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.25);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Typing text inside container */
+.typing-text {
+  color: #ffffff;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* Cursor styling */
+.typing-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 20px;
+  margin-left: 2px;
+  background-color: #ffffff;
+  animation: blink 1s infinite;
+  vertical-align: middle;
+}
+
+@keyframes blink {
+  0%, 49% {
+    opacity: 1;
+  }
+  50%, 100% {
+    opacity: 0;
+  }
+}
+
+/* Adjust subtitle spacing */
+.hero-subtitle {
+  margin-bottom: 5px;  /* Reduced to be closer to typing animation */
+}
+
+/* MASSIVE LOGO STYLING */
+.hero-logo-wrapper {
+  display: inline-flex !important;
+  align-items: center !important;
+  margin-right: 20px !important;
+}
+
+/* Add a subtle glow effect to the logo */
+.hero-logo-wrapper .logo-svg-container svg path {
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.4));
+}
+
+/* Ensure logo SVG has proper margins */
+.hero-logo-wrapper .logo-svg-container {
+  margin-right: -4px !important; /* Negative right margin */
+}
