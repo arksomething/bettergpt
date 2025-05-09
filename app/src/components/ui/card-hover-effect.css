@@ -1,6 +1,6 @@
 .hover-effect-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
   gap: 24px;
   width: 100%;
   padding: 20px 0;
@@ -10,21 +10,23 @@
   position: relative;
   background-color: #111111;
   border-radius: 16px;
-  padding: 24px;
+  padding: 32px;
   overflow: hidden;
   cursor: pointer;
   transition: all 0.3s ease;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  height: 220px;
+  height: 250px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
 .hover-card:hover {
-  border-color: rgba(255, 255, 255, 0.2);
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-8px);
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.5),
+    0 0 20px rgba(255, 255, 255, 0.1);
 }
 
 .hover-card.hovered {
@@ -38,12 +40,13 @@
 
 .hover-card-title {
   font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 12px;
+  font-weight: 700;
+  margin-bottom: 10px;
   color: white;
-  background: linear-gradient(to right, #ffffff, #a8a8a8);
+  background: linear-gradient(90deg, #ffffff, #a8a8ff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  transition: all 0.3s ease;
 }
 
 .hover-card-description {
@@ -69,6 +72,9 @@
 
 .hover-card.hovered .hover-card-glow {
   opacity: 1;
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
 }
 
 .hover-card-grid {
@@ -88,5 +94,11 @@
 @media (max-width: 768px) {
   .hover-effect-container {
     grid-template-columns: 1fr;
+  }
+  
+  .hover-card {
+    height: auto;
+    min-height: 220px;
+    padding: 24px;
   }
 } 

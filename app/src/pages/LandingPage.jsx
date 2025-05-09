@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 import { AnimatedCard } from '../components/AnimatedCard';
 import { HoverEffect } from '../components/ui/card-hover-effect';
 import { FlashcardDemo } from '../components/FlashcardDemo';
@@ -62,10 +63,7 @@ const features = [
     title: "Math Solver & Graph Mode",
     description: "Plot equations, visualize mathematical concepts, and solve complex problems with an interactive calculator and graph system."
   },
-  {
-    title: "AI Travel Planner",
-    description: "Get a complete day-by-day travel itinerary with a drag-and-drop interface to customize your perfect trip with budget tracking."
-  },
+ 
   {
     title: "Study Mode / Flashcards",
     description: "Turn any topic into an interactive learning experience with automatically generated flashcards, quizzes, and visual timelines."
@@ -123,12 +121,18 @@ const LandingPage = () => {
               <button className="main-button glow-effect" onClick={goToDemo}>Try it now!</button>
             </div>
           </div>
+          
+          {/* Add this scroll indicator */}
+          <div className="scroll-indicator" onClick={() => document.querySelector('.demo-section').scrollIntoView({ behavior: 'smooth' })}>
+            <span className="scroll-text">See more</span>
+            <div className="scroll-arrow"></div>
+          </div>
         </section>
         
-        {/* DEMO SECTION - seamlessly connected to hero */}
-        <section className="demo-section">
+        {/* DEMO SECTION - Now with ID for scrolling */}
+        <section className="demo-section" id="interactive-models">
           <div className="section-label">
-            <span>Interactive Demo</span>
+            <span>Interactive Models</span>
           </div>
           <div className="card-showcase">
             <AnimatedCard />
@@ -156,6 +160,7 @@ const LandingPage = () => {
           <HoverEffect items={features} />
         </section>
       </main>
+      <Footer />
     </div>
   );
 };
