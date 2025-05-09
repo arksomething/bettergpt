@@ -12,7 +12,7 @@ const {onRequest} = require("firebase-functions/v2/https");
 
 const openai = new OpenAI({
   baseURL: 'https://openrouter.ai/api/v1',
-  apiKey: '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',
+  apiKey: 'none',
 });
 
 // Create and deploy your first functions
@@ -49,3 +49,63 @@ exports.helloWorld = onRequest(async(request, response) => {
     response.status(500).json({ error: 'An error occurred while processing your request.' });
   }
 });
+
+exports.streamEndpoint = onRequest({ cors: true, secrets: [OPENAI_API_KEY] }, async (req, res) => {
+  if (req.method === "OPTIONS") {
+    res.set("Access-Control-Allow-Origin", "*"); // Allow all origins (or specify your frontend)
+    res.set("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    res.set("Access-Control-Allow-Headers", "Content-Type");
+    res.set("Access-Control-Max-Age", "3600"); // Cache preflight response for 1 hour
+    return res.status(204).send(""); // End preflight response
+  }
+  const openai = new OpenAI({ apiKey: OPENAI_API_KEY.value() });
+  // Set CORS Headers for actual requests
+  res.setHeader("Content-Type", "text/event-stream");
+  res.setHeader("Cache-Control", "no-cache");
+  res.setHeader("Connection", "keep-alive");
+  res.set("Access-Control-Allow-Origin", "*");
+  res.set("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+
+  let isEnded = false; // Flag to track if the response has ended
+  const {messages, model} = req.body;
+
+  const sendData = (data) => {
+    if (!isEnded) {
+      res.write(data.delta);
+    }
+  };
+
+  const prompt = ``
+
+  const stream = await openai.responses.create({
+    model: model,
+    input: [
+      {role: "system", content: prompt},
+        ...messages,
+      {role: "user", content: userPrompt},
+    ],
+    stream: true,
+  });
+
+  (async () => {
+    try {
+      for await (const event of stream) {
+        if (event.type == "response.output_text.delta"){ 
+          sendData(event);
+        }
+        if (event.type === 'response.output_item.done') {
+          break; // Exit the loop if the event indicates completion
+        }
+      }
+    } catch (error) {
+      console.error("Error during streaming:", error);
+      sendData({ error: "Something went wrong" }); // Send error message to client
+    } finally {
+      if (!isEnded) {
+        isEnded = true; // Set the flag to true
+        res.end(); // End the response
+      }
+    }
+  })();
+});
+
