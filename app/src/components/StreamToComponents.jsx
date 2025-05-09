@@ -28,7 +28,19 @@ function safeParseJsonStream(input, delimiter = '␟') {
 }
 
 const StreamToComponents = ({ streamAIResponse, stream }) => {
-  const items = safeParseJsonStream(stream);
+  const isLoading = stream === "Loading...";
+  let items = [];
+  let isValidJson = true;
+
+  try {
+    items = safeParseJsonStream(stream);
+    if (!Array.isArray(items) || items.length === 0) {
+      isValidJson = false;
+    }
+  } catch {
+    isValidJson = false;
+  }
+
   const headerItems = items.filter(item => item.layout === 'header');
   const sidebarItems = items.filter(item => item.layout === 'sidebar');
   const mainItems = items.filter(item => item.layout === 'main' || !item.layout);
@@ -53,10 +65,38 @@ const StreamToComponents = ({ streamAIResponse, stream }) => {
     }
   };
 
+
+  if (isLoading || !isValidJson) {
+    return (
+      <div className="stream-container" style={{ display: "flex", flexDirection: "row", height: "100%" }}>
+        <div style={{
+          flex: 1,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          borderRight: "1px solid #444"
+        }}>
+          <div style={{ fontSize: "1.2em", color: "#aaa" }}>Generating content...</div>
+        </div>
+        <div style={{
+          flex: 2,
+          padding: "2em",
+          overflow: "auto"
+        }}>
+          {/* Show the stream content, even if it's 'Loading...' */}
+          {stream}
+
+          
+          
+        </div>
+      </div>
+    );
+  }
+
+
   return (
     <div className="stream-container">
       {/* <Calculator /> */}
-      {/* {stream} */}
       {headerItems.length > 0 && (
         <div className="header">
           {headerItems.map((item, index) => renderItem(item, index))}

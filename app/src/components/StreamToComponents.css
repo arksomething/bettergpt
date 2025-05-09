@@ -16,9 +16,9 @@
 }
 
 .sidebar {
-  min-width: 180px;
+  min-width: max-content;
   padding: 1rem;
-  background-color: rgba(52, 53, 65, 0.8);
+  background-color: #343541;
   border-right: 1px solid rgba(255, 255, 255, 0.1);
   flex-shrink: 0;
   overflow: visible;

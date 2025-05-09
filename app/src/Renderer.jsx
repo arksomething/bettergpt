@@ -54,7 +54,7 @@ const Renderer = () => {
             {"type": "text", "layout": "LAYOUT_HERE", "text": TEXT_HERE}
             {"type": "flashcard", "layout": "LAYOUT_HERE", "items": [{id: 1, title: TITLE_HERE, category: CATEGORY_HERE, content: TEXT_HERE, answer: ANSWER_HERE}]}
             {"type": "image", "layout": "LAYOUT_HERE", "url": URL_HERE}
-            {"type": "video", "layout": "LAYOUT_HERE", "url": URL_HERE}
+            {"type": "link", "layout": "LAYOUT_HERE", "text": TEXT_HERE, "url": URL_HERE}
             {"type": "button", "layout": "LAYOUT_HERE", "text": CONTENT_HERE, "prompt": PROMPT_HERE}
             {"type": "card", "layout": "LAYOUT_HERE", "header": CARD_HEADER, "content": CONTENT_HEADER, "image": OPTIONAL_IMAGE_URL}
             LAYOUT_HERE can be "main", "sidebar", "header", or "footer." Use this to determine the size of the object.
@@ -102,7 +102,6 @@ const Renderer = () => {
   return (
     <div className="app">
       <div className="messages">
-        {/* {output} */}
         <StreamToComponents streamAIResponse={streamAIResponse} stream={output} />
       </div>
       <form onSubmit={handleSubmit} className="input-form">
