@@ -3,6 +3,7 @@
   flex-direction: column;
   height: 100%;
   min-height: 0;
+  overflow: hidden;
 }
 
 .content-row {
@@ -13,12 +14,13 @@
   overflow-x: auto;
   overflow-y: auto;
   height: 100%;
+  background-color: #161616;
 }
 
 .sidebar {
   min-width: max-content;
   padding: 1rem;
-  background-color: #343541;
+  background-color: #161616;
   border-right: 1px solid rgba(255, 255, 255, 0.1);
   flex-shrink: 0;
   overflow: visible;
@@ -33,12 +35,13 @@
   min-height: 0;
   overflow: visible;
   height: 100%;
+  background-color: #161616;
 }
 
 .footer {
   margin: 0px;
   padding-top: 1em;
-  background-color: rgba(52, 53, 65, 0.8);
+  background-color: #161616;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   flex-shrink: 0;
   position: sticky;

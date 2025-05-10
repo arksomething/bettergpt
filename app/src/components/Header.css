@@ -9,7 +9,7 @@
 }
 
 .header-content {
-  background-color: rgba(20, 20, 20, 0.6);
+  background-color: #161616;
   backdrop-filter: blur(10px);
   border-radius: 20px;
   padding: 12px 24px;
@@ -133,4 +133,14 @@
     padding: 6px 12px;
     font-size: 0.8rem;
   }
+} 
+
+.app-container {
+  background: none !important;
+} 
+
+.app {
+  background: #18181a; /* or #000 or #343541 */
+  min-height: 100vh;
+  /* ...other styles... */
 } 

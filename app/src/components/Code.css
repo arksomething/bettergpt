@@ -1,0 +1,8 @@
+.cm-editor {
+  justify-content: flex-start !important;
+  text-align: left !important;
+}
+
+.editor-container {
+  margin: 8px;
+}

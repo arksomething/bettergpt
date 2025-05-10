@@ -5,6 +5,8 @@ import Flashcard from './Flashcard';
 import Card from './Card';
 import Image from './Image';
 import Calculator from './Calculator';
+import Code from './Code';
+import Notebook from './Notebook';
 import './StreamToComponents.css';
 import { CardStack } from './ui/card-stack';
 
@@ -28,6 +30,7 @@ function safeParseJsonStream(input, delimiter = '␟') {
 }
 
 const StreamToComponents = ({ streamAIResponse, stream }) => {
+
   const isLoading = stream === "Loading...";
   let items = [];
   let isValidJson = true;
@@ -50,16 +53,16 @@ const StreamToComponents = ({ streamAIResponse, stream }) => {
     switch (item.type) {
       case 'text':
         return <MarkdownView key={index} text={item.text} />;
-      case 'component':
-        return <p key={index}>{item.content}</p>;
       case 'button':
         return <Button key={index} text={item.text} prompt={item.prompt} streamAIResponse={streamAIResponse} />;
       case 'flashcard':
         return <CardStack key={index} items={item.items} />;
       case 'card':
         return <Card key={index} header={item.header} content={item.content} image={item.image} />;
-      case 'image':
-        return <Image key={index} src={item.url} alt={item.alt} />;
+      case 'notebook':
+        return <Notebook key={index} text={item.text} />;
+      case 'code':
+        return <Code key={index} text={item.text} />;
       default:
         return null;
     }
@@ -72,7 +75,6 @@ const StreamToComponents = ({ streamAIResponse, stream }) => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          borderRight: "1px solid #444"
         }}>
           <div style={{ fontSize: "1.2em", color: "#aaa" }}>Ask me anything...</div>
         </div>
@@ -88,7 +90,6 @@ const StreamToComponents = ({ streamAIResponse, stream }) => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          borderRight: "1px solid #444"
         }}>
           <div style={{ fontSize: "1.2em", color: "#aaa" }}>Generating content...</div>
         </div>

@@ -74,7 +74,7 @@ function App() {
   };
 
   return (
-    <div className="app-container">
+    <div className="app-container" style={{ background: 'none' }}>
       <Header />
       <div className="sidebar">
         <div className="sidebar-header">

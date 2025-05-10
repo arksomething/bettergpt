@@ -10,12 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@codemirror/lang-javascript": "^6.2.3",
     "@headlessui/react": "^2.2.2",
+    "@uiw/react-codemirror": "^4.23.12",
     "clsx": "^2.1.1",
     "framer-motion": "^12.10.4",
     "mathjs": "^14.4.0",
-    "plotly.js-dist": "^3.0.1",
     "motion": "^12.10.4",
+    "plotly.js-dist": "^3.0.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-markdown": "^10.1.0",
